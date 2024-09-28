@@ -16,25 +16,51 @@ public class FlorControlador {
     @Autowired
     private FlorServicio florServicio;
 
-    // Método para listar todas las flores y mostrar en flores.html
+    // Listar flores
     @GetMapping
     public String listarFlores(Model model) {
         List<Flor> flores = florServicio.obtenerTodasLasFlores();
         model.addAttribute("flores", flores);
-        return "flores"; // Esto retorna la vista flores.html
+        return "flores";
     }
 
-    // Método para mostrar el formulario de nueva flor en nuevaFlor.html
+    // Mostrar formulario de nueva flor
     @GetMapping("/nuevo")
     public String mostrarFormularioNuevaFlor(Model model) {
-        model.addAttribute("flor", new Flor()); // Agrega una nueva instancia de Flor al modelo
-        return "nuevaFlor"; // Esto retorna la vista nuevaFlor.html
+        model.addAttribute("flor", new Flor());
+        return "nuevaFlor";
     }
 
-    // Método para crear una nueva flor y redirigir a la lista de flores
+    // Crear nueva flor
     @PostMapping
     public String crearFlor(@ModelAttribute Flor flor) {
-        florServicio.crearFlor(flor); // Guarda la nueva flor en la base de datos
-        return "redirect:/flores"; // Redirige a la página de lista de flores después de agregar
+        florServicio.crearFlor(flor);
+        return "redirect:/flores";
+    }
+
+    // Mostrar formulario para editar una flor existente
+    @GetMapping("/editar/{id}")
+    public String mostrarFormularioEditarFlor(@PathVariable Long id, Model model) {
+        Flor flor = florServicio.obtenerFlorPorId(id);
+        if (flor != null) {
+            model.addAttribute("flor", flor);
+            return "editarFlor";
+        } else {
+            return "redirect:/flores";
+        }
+    }
+
+    // Guardar cambios de edición
+    @PostMapping("/editar/{id}")
+    public String editarFlor(@PathVariable Long id, @ModelAttribute Flor florActualizada) {
+        florServicio.actualizarFlor(id, florActualizada);
+        return "redirect:/flores";
+    }
+
+    // Eliminar una flor
+    @GetMapping("/eliminar/{id}")
+    public String eliminarFlor(@PathVariable Long id) {
+        florServicio.eliminarFlor(id);
+        return "redirect:/flores";
     }
 }

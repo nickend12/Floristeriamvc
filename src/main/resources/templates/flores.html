@@ -3,28 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>Lista de Flores</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <header class="bg-primary text-white text-center py-3">
+    <header>
         <h1>Lista de Flores</h1>
     </header>
-    <div class="container mt-5">
-        <!-- Botón para agregar nueva flor -->
-        <div class="mb-3">
-            <a th:href="@{/flores/nuevo}" class="btn btn-primary">Agregar Nueva Flor</a> <!-- Redirige al formulario de nueva flor -->
-        </div>
-        <!-- Tabla para listar las flores -->
-        <table class="table table-striped">
+    <div class="container">
+        <a href="#" th:href="@{/flores/nuevo}" class="btn btn-success mb-3">Agregar Nueva Flor</a> 
+        <a href="#" th:href="@{/pedidos}" class="btn btn-info mb-3">Consultar Pedidos</a> 
+               
+        <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Tipo</th>
-                    <th scope="col">Color</th>
-                    <th scope="col">Variedad</th>
-                    <th scope="col">Cantidad Disponible</th>
-                    <th scope="col">Precio Compra</th>
-                    <th scope="col">Precio Venta</th>
+                    <th>ID</th>
+                    <th>Tipo</th>
+                    <th>Color</th>
+                    <th>Variedad</th>
+                    <th>Cantidad Disponible</th>
+                    <th>Precio Compra</th>
+                    <th>Precio Venta</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -36,13 +36,15 @@
                     <td th:text="${flor.cantidadDisponible}"></td>
                     <td th:text="${flor.precioCompra}"></td>
                     <td th:text="${flor.precioVenta}"></td>
+                    <td>
+                        <div class="btn-group" role="group">
+                            <a th:href="@{/flores/editar/{id}(id=${flor.id})}" class="btn btn-warning">Modificar</a>
+                            <a th:href="@{/flores/eliminar/{id}(id=${flor.id})}" class="btn btn-danger">Eliminar</a>
+                        </div>
+                    </td>
                 </tr>
             </tbody>
         </table>
     </div>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

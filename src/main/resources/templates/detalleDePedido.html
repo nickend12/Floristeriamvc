@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle del Pedido</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <header>
+        <h1>Detalle del Pedido</h1>
+    </header>
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">ID: <span th:text="${pedido.id}"></span></h5>
+                <p class="card-text">Nombre del Cliente: <span th:text="${pedido.clienteNombre}"></span></p>
+                <p class="card-text">Dirección: <span th:text="${pedido.clienteDireccion}"></span></p>
+                <p class="card-text">Contacto: <span th:text="${pedido.clienteContacto}"></span></p>
+                <p class="card-text">Tipo de Arreglo: <span th:text="${pedido.tipoArreglo}"></span></p>
+                <p class="card-text">Ocasión: <span th:text="${pedido.ocasion}"></span></p>
+                <p class="card-text">Fecha de Entrega: <span th:text="${pedido.fechaEntrega}"></span></p>
+                <p class="card-text">Presupuesto: <span th:text="${pedido.presupuesto}"></span></p>
+                <p class="card-text">Estado: <span th:text="${pedido.estado}"></span></p>
+            </div>
+        </div>
+        <a href="#" th:href="@{/pedidos}" class="btn btn-primary mt-3">Volver a la Lista de Pedidos</a>
+    </div>
+</body>
+</html>
