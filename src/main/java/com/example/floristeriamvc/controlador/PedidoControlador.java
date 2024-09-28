@@ -63,4 +63,15 @@ public class PedidoControlador {
         pedidoServicio.eliminarPedido(id);
         return "redirect:/pedidos"; // Redirigir a la lista de pedidos después de eliminar
     }
+
+    @GetMapping("/{id}")
+public String consultarPedido(@PathVariable Long id, Model model) {
+    Pedido pedido = pedidoServicio.obtenerPedidoPorId(id);
+    if (pedido != null) {
+        model.addAttribute("pedido", pedido);
+        return "detallePedido"; // nombre de la plantilla que muestra los detalles del pedido
+    } else {
+        return "redirect:/pedidos"; // redirigir si no se encuentra el pedido
+    }
+}
 }

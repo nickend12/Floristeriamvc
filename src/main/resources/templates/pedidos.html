@@ -9,8 +9,7 @@
 <body>
     <div class="container">
         <h1>Lista de Pedidos</h1>
-        <a href="#" th:href="@{/pedidos/nuevo}" class="btn btn-primary mb-3">Crear Nuevo Pedido</a>
-        <table class="table table-bordered">
+        <table class="table">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -39,14 +38,12 @@
                     <td>
                         <a th:href="@{/pedidos/{id}(id=${pedido.id})}" class="btn btn-info btn-sm">Ver</a>
                         <a th:href="@{/pedidos/editar/{id}(id=${pedido.id})}" class="btn btn-warning btn-sm">Editar</a>
-                        <form th:action="@{/pedidos/{id}(id=${pedido.id})}" method="post" style="display:inline;">
-                            <input type="hidden" name="_method" value="DELETE" />
-                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Está seguro de que desea eliminar este pedido?');">Eliminar</button>
-                        </form>
+                        <a th:href="@{/pedidos/eliminar/{id}(id=${pedido.id})}" class="btn btn-danger btn-sm">Eliminar</a>
                     </td>
                 </tr>
             </tbody>
         </table>
+        <a href="#" th:href="@{/pedidos/nuevo}" class="btn btn-primary">Crear Nuevo Pedido</a>
     </div>
 </body>
 </html>
